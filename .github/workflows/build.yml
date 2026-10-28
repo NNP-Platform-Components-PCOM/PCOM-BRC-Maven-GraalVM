@@ -1,0 +1,29 @@
+name: build-and-publish
+
+# Thin caller: the actual build/publish/sign/scan logic lives in the shared
+# PCOM-CICD reusable pipeline. This repository only supplies the image inputs.
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  # Weekly rebuild so the image picks up fresh base security updates.
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write        # cosign keyless signing
+  security-events: write # SARIF upload to the Security tab
+
+jobs:
+  pipeline:
+    uses: NNP-Platform-Components-PCOM/PCOM-CICD/.github/workflows/container-pipeline.yml@main
+    secrets: inherit
+    with:
+      image-name: pcom-brc-maven-graalvm
+      image-version: "3.9.11-graalvm21-v1"
+      platforms: linux/amd64
