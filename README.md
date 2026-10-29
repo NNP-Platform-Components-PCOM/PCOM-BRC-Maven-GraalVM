@@ -22,7 +22,7 @@ Architecture: `linux/amd64`.
 - GraalVM Community JDK 21 (from `pcom-brc-graalvm:21`)
 - Apache Maven 3.9.11, installed from the Apache distribution with its SHA-512
   checksum verified
-- `git`
+- Standard CI tools: `git`, `find`, `which`, `grep`, `sed`, `awk`, `tar`, `gzip`, `bzip2`, `xz`, `zip`/`unzip`, `diff`, `ps`, `curl` and `python3`
 - Unprivileged `appuser`; working directory `/data`
 
 ## Use in a pipeline

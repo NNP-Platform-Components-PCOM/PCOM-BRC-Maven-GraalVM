@@ -36,7 +36,9 @@ USER root
 
 # Tooling needed to unpack Maven and for CI checkouts (git). The GraalVM base is
 # Oracle Linux, so packages come from microdnf.
-RUN microdnf install -y --setopt=install_weak_deps=0 tar gzip git shadow-utils \
+RUN microdnf install -y --setopt=install_weak_deps=0 \
+         tar gzip bzip2 xz zip unzip git shadow-utils \
+         findutils which grep sed gawk diffutils procps-ng hostname python3 \
     && (command -v curl >/dev/null || microdnf install -y curl-minimal) \
     && microdnf clean all
 
