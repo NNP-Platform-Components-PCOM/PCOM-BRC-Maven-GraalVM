@@ -11,7 +11,7 @@ them. It is not meant to be deployed.
 Published to Docker Hub on every push to `main`:
 
 ```
-docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v2
+docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v1
 docker.io/nubonativesolution/pcom-brc-maven-graalvm:latest
 ```
 
@@ -22,14 +22,14 @@ Architecture: `linux/amd64`.
 - GraalVM Community JDK 21 (from `pcom-brc-graalvm:21`)
 - Apache Maven 3.9.11, installed from the Apache distribution with its SHA-512
   checksum verified
-- `git`
+- Standard CI tools: `git`, `find`, `which`, `grep`, `sed`, `awk`, `tar`, `gzip`, `bzip2`, `xz`, `zip`/`unzip`, `diff`, `ps`, `curl` and `python3`
 - Unprivileged `appuser`; working directory `/data`
 
 ## Use in a pipeline
 
 ```yaml
 maven-build:
-  image: docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v2
+  image: docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v1
   script:
     - mvn --batch-mode package
 ```
@@ -40,13 +40,13 @@ and copy the packaged jar into it.
 ## Build locally
 
 ```bash
-docker build -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v2 .
+docker build -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v1 .
 
 # Different Maven version or base:
 docker build \
   --build-arg MAVEN_VERSION=3.9.11 \
   --build-arg base_version=21 \
-  -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v2 .
+  -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v1 .
 ```
 
 ## CI/CD
