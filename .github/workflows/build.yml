@@ -25,5 +25,5 @@ jobs:
     secrets: inherit
     with:
       image-name: pcom-brc-maven-graalvm
-      image-version: "3.9.11-graalvm21-v1"
+      image-version: "3.9.11-graalvm21-v2"
       platforms: linux/amd64

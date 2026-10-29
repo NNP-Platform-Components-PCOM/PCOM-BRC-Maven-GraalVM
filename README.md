@@ -11,7 +11,7 @@ them. It is not meant to be deployed.
 Published to Docker Hub on every push to `main`:
 
 ```
-docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v1
+docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v2
 docker.io/nubonativesolution/pcom-brc-maven-graalvm:latest
 ```
 
@@ -29,7 +29,7 @@ Architecture: `linux/amd64`.
 
 ```yaml
 maven-build:
-  image: docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v1
+  image: docker.io/nubonativesolution/pcom-brc-maven-graalvm:3.9.11-graalvm21-v2
   script:
     - mvn --batch-mode package
 ```
@@ -40,13 +40,13 @@ and copy the packaged jar into it.
 ## Build locally
 
 ```bash
-docker build -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v1 .
+docker build -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v2 .
 
 # Different Maven version or base:
 docker build \
   --build-arg MAVEN_VERSION=3.9.11 \
   --build-arg base_version=21 \
-  -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v1 .
+  -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v2 .
 ```
 
 ## CI/CD

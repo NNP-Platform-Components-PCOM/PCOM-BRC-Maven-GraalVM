@@ -7,7 +7,7 @@
 # Part of the Nubo Native Platform (NNP) build components.
 #
 # Build:
-#   docker build -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v1 .
+#   docker build -t pcom-brc-maven-graalvm:3.9.11-graalvm21-v2 .
 
 # Base image: the PCOM GraalVM runtime image. Overridable at build time.
 ARG base_image=docker.io/nubonativesolution/pcom-brc-graalvm
@@ -18,7 +18,7 @@ FROM ${base_image}:${base_version}
 # --- OCI image metadata (populated by CI, overridable at build time) ---------
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION="3.9.11-graalvm21-v1"
+ARG VERSION="3.9.11-graalvm21-v2"
 ARG MAVEN_VERSION=3.9.11
 ARG USER_HOME_DIR=/home/appuser
 
@@ -36,7 +36,7 @@ USER root
 
 # Tooling needed to unpack Maven and for CI checkouts (git). The GraalVM base is
 # Oracle Linux, so packages come from microdnf.
-RUN microdnf install -y --setopt=install_weak_deps=0 tar gzip git shadow-utils \
+RUN microdnf install -y --setopt=install_weak_deps=0 tar gzip git shadow-utils findutils which unzip \
     && (command -v curl >/dev/null || microdnf install -y curl-minimal) \
     && microdnf clean all
 
